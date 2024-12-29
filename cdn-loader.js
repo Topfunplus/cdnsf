@@ -1,5 +1,8 @@
 (async function() {
+  console.log("cdn-loader.js loaded")
   const currentScript = document.currentScript;
+
+  console.log ('currentScript',currentScript)
   const cdnNames = currentScript.getAttribute('data-cdn');
   if (!cdnNames) return;
 
@@ -7,7 +10,9 @@
 
   try {
     const response = await fetch('cdn-config.json');
+    console.log ('res libraries',response)
     const cdnConfig = await response.json();
+    console.log ('cdnConfig',cdnConfig)
 
     libraries.forEach(lib => {
       const cdnUrl = cdnConfig.libraries[lib];
